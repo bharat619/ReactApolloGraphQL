@@ -1,0 +1,32 @@
+# This .prisma file is for our backend
+# Whenever you make changes to the data model, you have to have to have to deploy it to prisma because we need to update the database
+enum Permission {
+  ADMIN
+  USER
+  ITEMCREATE
+  ITEMDELETE
+  ITEMUPDATE
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  permissions: [Permission]
+}
+
+type Item{
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  # user: User!
+}
